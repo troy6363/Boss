@@ -129,20 +129,32 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: "power3.out"
     });
 
-    // Mobile Menu Toggle
+    // Mobile Menu Toggle Logic
     const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.querySelector('.md\\:flex.items-center.gap-10'); // Selecting the desktop nav container
+    const menuClose = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
 
-    // For a real mobile menu, we'd want a dedicated mobile overlay, 
-    // but let's add a basic toggle for now that shows/hides a mobile-specific list.
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
+    if (menuToggle && mobileMenu) {
+        const toggleMenu = (open) => {
+            if (open) {
+                gsap.to(mobileMenu, { x: '0%', duration: 0.8, ease: "expo.out" });
+                // Stagger reveal links
+                gsap.fromTo('.mobile-link',
+                    { opacity: 0, y: 30 },
+                    { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out", delay: 0.4 }
+                );
+            } else {
+                gsap.to(mobileMenu, { x: '100%', duration: 0.6, ease: "expo.in" });
+            }
+        };
 
-            // In a production app, we would toggle a 'mobile-menu-active' class on the body
-            // and show a full-screen glassmorphic overlay.
-            console.log('Mobile menu toggled');
+        menuToggle.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+
+        // Auto-close on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
         });
     }
 
