@@ -1,0 +1,149 @@
+:root {
+    /* Color Palette */
+    --primary: #2563eb;
+    /* Royal Blue */
+    --primary-dark: #1d4ed8;
+    --secondary: #ea580c;
+    /* Orange Accents */
+    --bg-dark: #0c0a09;
+    --bg-card: #1c1917;
+    --text-white: #fafaf9;
+    --text-muted: #a8a29e;
+    --glass-bg: rgba(28, 25, 23, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    /* Typography */
+    --font-heading: 'Bebas Neue', cursive;
+    --font-body: 'Inter', sans-serif;
+
+    /* Transitions */
+    --transition-smooth: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes scroll-indicator {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(200%);
+    }
+}
+
+.animate-scroll-indicator {
+    animation: scroll-indicator 2s infinite ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.font-heading {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+    /* Bebas Neue looks best at 400 */
+}
+
+/* Glassmorphism Classes */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 9999px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px -5px rgba(220, 38, 38, 0.4);
+}
+
+.btn-outline {
+    border: 2px solid var(--text-white);
+    color: var(--text-white);
+    padding: 10px 30px;
+    border-radius: 9999px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    display: inline-block;
+}
+
+.btn-outline:hover {
+    background-color: var(--text-white);
+    color: var(--bg-dark);
+}
+
+/* Custom Utilities */
+.text-blue {
+    color: var(--primary);
+}
+
+.bg-blue {
+    background-color: var(--primary);
+}
+
+.text-orange {
+    color: var(--secondary);
+}
+
+.bg-orange {
+    background-color: var(--secondary);
+}
