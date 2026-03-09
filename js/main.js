@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
-    const logo = document.getElementById('logo');
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
